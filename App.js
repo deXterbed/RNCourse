@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
+const generateRandomKey = () => Math.random().toString(36).substr(2, 9);
+
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [goals, setGoals] = useState([]);
@@ -25,7 +27,9 @@ export default function App() {
       </View>
       <View style={styles.goalsContainer}>
         {goals.map((goal) => (
-          <Text key={goal}>{goal}</Text>
+          <View key={generateRandomKey()} style={styles.goalItemContainer}>
+            <Text style={styles.goalItem}>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,5 +60,14 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+  },
+  goalItemContainer: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  goalItem: {
+    color: "#fff",
   },
 });
