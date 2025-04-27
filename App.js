@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import GoalInput from "./components/GoalInput";
-import GoalItem from "./components/GoalItem";
+import GoalInput from "@components/GoalInput";
+import GoalItem from "@components/GoalItem";
 
 const generateRandomKey = () => Math.random().toString(36).substr(2, 9);
 
