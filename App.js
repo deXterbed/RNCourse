@@ -15,13 +15,22 @@ export default function App() {
     ]);
   };
 
+  const deleteGoal = (key) => {
+    setGoals((prevGoals) => prevGoals.filter((goal) => goal.key !== key));
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoal} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
-          renderItem={({ item }) => <GoalItem text={item.text} />}
+          renderItem={({ item }) => (
+            <GoalItem
+              text={item.text}
+              onDeleteItem={deleteGoal.bind(this, item.key)}
+            />
+          )}
         />
       </View>
     </View>
