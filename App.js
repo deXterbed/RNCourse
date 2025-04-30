@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, FlatList, StyleSheet, Button } from "react-native";
+import { View, FlatList, StyleSheet, Button, StatusBar } from "react-native";
 import GoalInput from "@components/GoalInput";
 import GoalItem from "@components/GoalItem";
 
@@ -30,29 +30,34 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
-      <GoalInput
-        onAddGoal={addGoal}
-        visible={isModalVisible}
-        onCancel={endAddGoalHandler}
-      />
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goals}
-          renderItem={({ item }) => (
-            <GoalItem
-              text={item.text}
-              onDeleteItem={deleteGoal.bind(this, item.key)}
-            />
-          )}
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Add New Goal"
+            color="#a065ec"
+            onPress={startAddGoalHandler}
+          />
+        </View>
+        <GoalInput
+          onAddGoal={addGoal}
+          visible={isModalVisible}
+          onCancel={endAddGoalHandler}
         />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goals}
+            renderItem={({ item }) => (
+              <GoalItem
+                text={item.text}
+                onDeleteItem={deleteGoal.bind(this, item.key)}
+              />
+            )}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -61,8 +66,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    backgroundColor: "#1e085a",
   },
   goalsContainer: {
     flex: 5,
+  },
+  buttonContainer: {
+    marginTop: 16,
   },
 });
