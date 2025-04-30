@@ -1,15 +1,13 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
-const GoalItem = ({ text, onDeleteItem, id }) => (
+const GoalItem = ({ text, onDeleteItem }) => (
   <View style={styles.goalItemContainer}>
-    <Text style={styles.goalItem}>{text}</Text>
     <Pressable
       onPress={onDeleteItem}
-      style={styles.deleteButton}
-      android_ripple={{ color: "#fff3" }}
+      android_ripple={{ color: "#dddddd" }}
+      style={({ pressed }) => pressed && styles.pressedItem}
     >
-      <Ionicons name="trash" size={22} color="white" />
+      <Text style={styles.goalItem}>{text}</Text>
     </Pressable>
   </View>
 );
@@ -20,17 +18,14 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 6,
     backgroundColor: "#5e0acc",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   goalItem: {
     color: "#fff",
+    padding: 8,
     fontSize: 16,
   },
-  deleteButton: {
-    padding: 8,
-    borderRadius: 16,
+  pressedItem: {
+    opacity: 0.5,
   },
 });
 
